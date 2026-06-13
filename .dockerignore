@@ -1,0 +1,9 @@
+vendor/
+widget-source/node_modules/
+.env
+.env.docker
+*.log
+.git/
+.gitignore
+docker-compose.yml
+Dockerfile

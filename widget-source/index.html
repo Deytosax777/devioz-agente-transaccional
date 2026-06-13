@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SofIA Widget - Entorno de desarrollo</title>
+    <style>
+        body { font-family: system-ui; background: #0a0e1a; color: #e2e8f0; min-height: 100vh; margin: 0; padding: 3rem; }
+    </style>
+</head>
+<body>
+    <h1>Entorno de desarrollo del widget SofIA</h1>
+    <p>El widget se monta automáticamente en la esquina inferior derecha.</p>
+    <p>Configura <code>apiBase</code> apuntando al backend PHP (ej: http://localhost:8080).</p>
+
+    <script>
+        window.SOFIA_CONFIG = { apiBase: 'http://localhost:8080' };
+    </script>
+    <script type="module" src="/src/widget/main.jsx"></script>
+</body>
+</html>

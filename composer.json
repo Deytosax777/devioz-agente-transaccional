@@ -1,0 +1,31 @@
+{
+    "name": "devioz/devioz-web-completa",
+    "description": "Web corporativa Devioz + Agente transaccional SofIA (Slim 4, Eloquent, Groq, Culqi)",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.2",
+        "ext-pdo": "*",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "slim/slim": "^4.12",
+        "slim/psr7": "^1.6",
+        "illuminate/database": "^10.48",
+        "vlucas/phpdotenv": "^5.6",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Devioz\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t public",
+        "create-admin": "php scripts/create-admin.php"
+    }
+}

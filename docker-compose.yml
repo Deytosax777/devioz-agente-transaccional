@@ -1,0 +1,65 @@
+version: '3.9'
+
+services:
+
+  # ── Aplicación PHP + Apache ──────────────────────────────────────────────
+  app:
+    build: .
+    container_name: devioz-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      APP_ENV: development
+      APP_URL: http://localhost:8080
+      # Cambia esta clave antes de pasar a producción
+      APP_KEY: devioz-local-dev-key-cambiar-en-produccion-64chars-xxxxx
+      # Base de datos (apunta al servicio "db" de este compose)
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_DATABASE: devioz_db
+      DB_USERNAME: devioz
+      DB_PASSWORD: devioz_pass
+      # ── Groq (IA) — pon tu API key aquí o en .env.docker ──────────────────
+      GROQ_API_KEY: ${GROQ_API_KEY:-gsk_PON_TU_API_KEY_AQUI}
+      GROQ_MODEL: llama-3.3-70b-versatile
+      GROQ_MAX_TOKENS: "1024"
+      GROQ_TEMPERATURE: "0.4"
+      # ── Culqi (pagos) — llaves de prueba pk_test_ / sk_test_ ──────────────
+      CULQI_PUBLIC_KEY: ${CULQI_PUBLIC_KEY:-pk_test_PON_TU_LLAVE_PUBLICA}
+      CULQI_SECRET_KEY: ${CULQI_SECRET_KEY:-sk_test_PON_TU_LLAVE_SECRETA}
+      CULQI_WEBHOOK_SECRET: ${CULQI_WEBHOOK_SECRET:-}
+      # ── Otros ─────────────────────────────────────────────────────────────
+      CORS_ALLOWED_ORIGINS: "*"
+      RATE_LIMIT_PER_MIN: "20"
+      WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-51999999999}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ── MySQL 8 ──────────────────────────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: devioz-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: devioz_db
+      MYSQL_USER: devioz
+      MYSQL_PASSWORD: devioz_pass
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3306:3306"    # opcional: permite conectarte con DBeaver / TablePlus
+    volumes:
+      - devioz_db_data:/var/lib/mysql
+      # El schema + seed se importa automáticamente en el primer arranque
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpass"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  devioz_db_data:
+    name: devioz_db_data

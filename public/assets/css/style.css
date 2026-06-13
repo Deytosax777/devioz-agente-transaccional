@@ -1,0 +1,299 @@
+/* ============================================================
+   DEVIOZ - Estilos corporativos
+   Hero oscuro elegante + secciones claras (Clean UI / Land-book)
+   ============================================================ */
+
+:root {
+    --dvz-dark: #0a0e1a;
+    --dvz-dark-2: #0f1629;
+    --dvz-blue: #3b82f6;
+    --dvz-blue-light: #60a5fa;
+    --dvz-cyan: #22d3ee;
+    --dvz-text-muted: rgba(226, 232, 240, 0.65);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ---------------- Navbar ---------------- */
+.dvz-navbar {
+    background: rgba(10, 14, 26, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.3s ease;
+}
+
+.dvz-navbar.scrolled {
+    background: rgba(10, 14, 26, 0.92);
+}
+
+.dvz-navbar .nav-link {
+    color: rgba(226, 232, 240, 0.8);
+    font-weight: 500;
+}
+
+.dvz-navbar .nav-link:hover {
+    color: #fff;
+}
+
+/* ---------------- Hero ---------------- */
+.dvz-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--dvz-dark);
+    overflow: hidden;
+    padding: 7rem 0 4rem;
+}
+
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Fallback si no hay WebGL: gradiente animado */
+.dvz-hero-fallback {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(59, 130, 246, 0.25), transparent 70%),
+        radial-gradient(ellipse 40% 35% at 70% 60%, rgba(34, 211, 238, 0.15), transparent 70%),
+        var(--dvz-dark);
+    animation: dvz-pulse 6s ease-in-out infinite alternate;
+}
+
+.dvz-hero.no-webgl #hero-canvas { display: none; }
+.dvz-hero.no-webgl .dvz-hero-fallback { display: block; }
+
+@keyframes dvz-pulse {
+    from { opacity: 0.7; }
+    to   { opacity: 1; }
+}
+
+.dvz-hero-content { z-index: 2; }
+
+.dvz-hero-sub {
+    color: var(--dvz-text-muted);
+    max-width: 680px;
+}
+
+.dvz-gradient-text {
+    background: linear-gradient(90deg, var(--dvz-blue-light), var(--dvz-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dvz-badge {
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    color: var(--dvz-blue-light);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+}
+
+.dvz-btn-glow {
+    box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
+}
+
+.dvz-hero-stats .dvz-stat {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.dvz-hero-stats strong {
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+.dvz-hero-stats span {
+    color: var(--dvz-text-muted);
+    font-size: 0.8rem;
+}
+
+.dvz-scroll-hint {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.4rem;
+    z-index: 2;
+    animation: dvz-bounce 2s infinite;
+}
+
+@keyframes dvz-bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 8px); }
+}
+
+/* ---------------- Secciones ---------------- */
+.dvz-section {
+    padding: 6rem 0;
+}
+
+.dvz-section-dark {
+    background: linear-gradient(180deg, var(--dvz-dark) 0%, var(--dvz-dark-2) 100%);
+}
+
+.dvz-eyebrow {
+    display: inline-block;
+    color: var(--dvz-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    margin-bottom: 0.6rem;
+}
+
+.dvz-text-muted { color: var(--dvz-text-muted); }
+
+/* ---------------- Cards de servicio ---------------- */
+.dvz-card {
+    background: #fff;
+    border: 1px solid #e9eef5;
+    border-radius: 18px;
+    padding: 1.8rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dvz-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(15, 35, 75, 0.10);
+}
+
+.dvz-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    color: var(--dvz-blue);
+    background: rgba(59, 130, 246, 0.12);
+}
+
+/* ---------------- Catalogo de productos ---------------- */
+.dvz-pills .nav-link {
+    color: #475569;
+    border: 1px solid #dbe3ee;
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+    font-weight: 500;
+    background: #fff;
+}
+
+.dvz-pills .nav-link.active {
+    background: var(--dvz-blue);
+    border-color: var(--dvz-blue);
+    color: #fff;
+}
+
+.dvz-product-card {
+    background: #fff;
+    border: 1px solid #e9eef5;
+    border-radius: 18px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dvz-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(15, 35, 75, 0.10);
+}
+
+.dvz-price {
+    font-weight: 800;
+    color: #0f172a;
+    font-size: 1.05rem;
+}
+
+.dvz-tier {
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.35em 0.9em;
+}
+
+.dvz-tier-basico     { background: #eef2f7; color: #475569; }
+.dvz-tier-pro        { background: rgba(59, 130, 246, 0.14); color: #1d4ed8; }
+.dvz-tier-premium    { background: rgba(168, 85, 247, 0.14); color: #7e22ce; }
+.dvz-tier-enterprise { background: rgba(245, 158, 11, 0.16); color: #b45309; }
+
+/* ---------------- Glass / CTA / Footer ---------------- */
+.dvz-glass {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 22px;
+    backdrop-filter: blur(8px);
+}
+
+.dvz-check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dvz-check-list li {
+    color: var(--dvz-text-muted);
+    padding: 0.45rem 0;
+}
+
+.dvz-check-list li::before {
+    content: '\F26B';
+    font-family: 'bootstrap-icons';
+    color: var(--dvz-cyan);
+    margin-right: 0.6rem;
+}
+
+.dvz-cta {
+    background: linear-gradient(135deg, #eff6ff 0%, #f0fdff 100%);
+    border: 1px solid #dbeafe;
+    border-radius: 26px;
+}
+
+.dvz-footer {
+    background: var(--dvz-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dvz-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dvz-footer-links li { padding: 0.3rem 0; color: var(--dvz-text-muted); }
+
+.dvz-footer-links a {
+    color: var(--dvz-text-muted);
+    text-decoration: none;
+}
+
+.dvz-footer-links a:hover { color: #fff; }
+
+.dvz-divider { border-color: rgba(255, 255, 255, 0.08); }
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+    .dvz-section { padding: 4rem 0; }
+    .dvz-hero { padding-top: 6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dvz-scroll-hint, .dvz-hero-fallback { animation: none; }
+}

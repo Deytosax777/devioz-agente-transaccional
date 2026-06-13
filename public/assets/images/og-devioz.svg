@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0e1a"/>
+      <stop offset="1" stop-color="#0f1629"/>
+    </linearGradient>
+    <linearGradient id="txt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="160" r="220" fill="#3b82f6" opacity="0.12"/>
+  <circle cx="1050" cy="480" r="160" fill="#22d3ee" opacity="0.10"/>
+  <text x="90" y="270" font-family="Arial, sans-serif" font-size="96" font-weight="800" fill="#ffffff">DEVIOZ</text>
+  <text x="90" y="350" font-family="Arial, sans-serif" font-size="40" fill="url(#txt)">Soluciones TI Empresariales con IA</text>
+  <text x="90" y="430" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8">Software Factory · IoT · Ciberseguridad · Cloud · RPA · Agentes IA</text>
+  <text x="90" y="540" font-family="Arial, sans-serif" font-size="26" fill="#e2e8f0">Conversa con SofIA y cotiza en minutos · devioz.pe</text>
+</svg>

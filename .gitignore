@@ -1,0 +1,23 @@
+# Entorno
+.env
+.env.docker
+
+# Dependencias PHP
+/vendor/
+
+# Dependencias Node
+/widget-source/node_modules/
+
+# Builds locales de Vite (se versionan los bundles finales en public/)
+/widget-source/dist/
+
+# Logs y temporales
+*.log
+/storage/
+.phpunit.cache/
+
+# Sistema operativo / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

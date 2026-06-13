@@ -1,0 +1,22 @@
+{
+  "name": "devioz-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Widget transaccional SofIA (React) + Panel de administracion (React SPA) para Devioz",
+  "scripts": {
+    "dev": "vite --config vite.widget.config.js",
+    "dev:admin": "vite --config vite.admin.config.js",
+    "build": "npm run build:widget && npm run build:admin",
+    "build:widget": "vite build --config vite.widget.config.js",
+    "build:admin": "vite build --config vite.admin.config.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "bcryptjs": "^2.4.3",
+    "vite": "^5.4.11"
+  }
+}

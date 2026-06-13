@@ -1,0 +1,15 @@
+# Devioz - Reescritura para Apache (XAMPP / hosting compartido)
+RewriteEngine On
+
+# Servir archivos y directorios existentes tal cual (assets, widget, admin)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Todo lo demas pasa por el front controller de Slim
+RewriteRule ^ index.php [QSA,L]
+
+# No bufferizar SSE detras de Apache + mod_deflate
+<IfModule mod_deflate.c>
+    SetEnvIfNoCase Request_URI ^/api/chat/ no-gzip=1
+</IfModule>

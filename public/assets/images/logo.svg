@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="dvzGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0f1629"/>
+  <path d="M20 18h12c8.8 0 16 6.3 16 14s-7.2 14-16 14H20V18zm8 7v14h4c5 0 8.6-3.1 8.6-7s-3.6-7-8.6-7h-4z" fill="url(#dvzGrad)"/>
+  <circle cx="47" cy="20" r="4" fill="#22d3ee"/>
+</svg>
