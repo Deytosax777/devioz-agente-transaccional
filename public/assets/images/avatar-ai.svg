@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4C1D95"/>
+      <stop offset="50%" stop-color="#6D28D9"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D4A574"/>
+      <stop offset="100%" stop-color="#B07840"/>
+    </linearGradient>
+    <linearGradient id="jacket" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4C1D95"/>
+      <stop offset="100%" stop-color="#2E1065"/>
+    </linearGradient>
+    <clipPath id="clip">
+      <circle cx="150" cy="150" r="150"/>
+    </clipPath>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="150" cy="150" r="150" fill="url(#bg)"/>
+
+  <!-- Neural network dots background -->
+  <g opacity="0.15">
+    <circle cx="40" cy="60" r="3" fill="white"/>
+    <circle cx="80" cy="40" r="2" fill="white"/>
+    <circle cx="220" cy="55" r="3" fill="white"/>
+    <circle cx="260" cy="80" r="2" fill="white"/>
+    <circle cx="270" cy="200" r="3" fill="white"/>
+    <circle cx="30" cy="220" r="2" fill="white"/>
+    <line x1="40" y1="60" x2="80" y2="40" stroke="white" stroke-width="0.8"/>
+    <line x1="80" y1="40" x2="220" y2="55" stroke="white" stroke-width="0.8"/>
+    <line x1="220" y1="55" x2="260" y2="80" stroke="white" stroke-width="0.8"/>
+    <line x1="260" y1="80" x2="270" y2="200" stroke="white" stroke-width="0.8"/>
+    <line x1="40" y1="60" x2="30" y2="220" stroke="white" stroke-width="0.8"/>
+  </g>
+
+  <!-- Purple glow behind head -->
+  <circle cx="150" cy="130" r="75" fill="rgba(167,139,250,0.15)" filter="url(#glow)"/>
+
+  <g clip-path="url(#clip)">
+    <!-- Jacket -->
+    <path d="M10 330 C10 248 65 222 150 222 C235 222 290 248 290 330 Z" fill="url(#jacket)"/>
+
+    <!-- Shirt under jacket -->
+    <path d="M118 222 L150 238 L182 222 L175 200 L125 200 Z" fill="rgba(255,255,255,0.9)"/>
+
+    <!-- Jacket lapels -->
+    <polygon points="110,222 125,200 150,238" fill="#3B0764"/>
+    <polygon points="190,222 175,200 150,238" fill="#2E1065"/>
+
+    <!-- Neck -->
+    <rect x="132" y="172" width="36" height="30" rx="6" fill="url(#skin)"/>
+
+    <!-- Head -->
+    <ellipse cx="150" cy="143" rx="52" ry="57" fill="url(#skin)"/>
+
+    <!-- Hair (dark, wavy) -->
+    <ellipse cx="150" cy="90" rx="52" ry="22" fill="#1C0A00"/>
+    <ellipse cx="150" cy="85" rx="50" ry="18" fill="#2D1200"/>
+    <ellipse cx="98" cy="115" rx="15" ry="32" fill="#1C0A00"/>
+    <ellipse cx="202" cy="115" rx="15" ry="32" fill="#1C0A00"/>
+    <!-- Hair wave detail -->
+    <path d="M100 88 Q125 78 150 85 Q175 78 200 88" stroke="#3D1A00" stroke-width="3" fill="none"/>
+
+    <!-- Ears -->
+    <ellipse cx="98" cy="148" rx="8" ry="11" fill="#B07840"/>
+    <ellipse cx="202" cy="148" rx="8" ry="11" fill="#B07840"/>
+
+    <!-- Eyes (intelligent look) -->
+    <ellipse cx="126" cy="146" rx="8" ry="8.5" fill="white"/>
+    <ellipse cx="174" cy="146" rx="8" ry="8.5" fill="white"/>
+    <circle cx="128" cy="147" r="5" fill="#4C1D95"/>
+    <circle cx="176" cy="147" r="5" fill="#4C1D95"/>
+    <circle cx="128" cy="147" r="3" fill="#1C0A00"/>
+    <circle cx="176" cy="147" r="3" fill="#1C0A00"/>
+    <circle cx="130" cy="145" r="1.5" fill="white"/>
+    <circle cx="178" cy="145" r="1.5" fill="white"/>
+
+    <!-- Eyebrows (arched) -->
+    <path d="M116 133 Q126 127 138 132" stroke="#1C0A00" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M162 132 Q174 127 184 133" stroke="#1C0A00" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <path d="M146 160 Q150 168 154 160" stroke="#9A6030" stroke-width="1.5" fill="none"/>
+
+    <!-- Smile -->
+    <path d="M132 178 Q150 190 168 178" stroke="#9A6030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- AI brain badge -->
+  <circle cx="240" cy="240" r="28" fill="rgba(76,29,149,0.85)" stroke="rgba(167,139,250,0.4)" stroke-width="1.5"/>
+  <text x="240" y="236" text-anchor="middle" font-size="14" fill="white">🧠</text>
+  <text x="240" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(255,255,255,0.7)" letter-spacing="0.5">AI</text>
+</svg>

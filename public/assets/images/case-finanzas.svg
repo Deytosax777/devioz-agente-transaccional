@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 220" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="480" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="lineg" x1="0" y1="0" x2="480" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feComposite in="SourceGraphic" in2="b" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="480" height="220" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.04">
+    <line x1="0" y1="44" x2="480" y2="44" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="88" x2="480" y2="88" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="132" x2="480" y2="132" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="176" x2="480" y2="176" stroke="white" stroke-width="1"/>
+    <line x1="80" y1="0" x2="80" y2="220" stroke="white" stroke-width="1"/>
+    <line x1="160" y1="0" x2="160" y2="220" stroke="white" stroke-width="1"/>
+    <line x1="240" y1="0" x2="240" y2="220" stroke="white" stroke-width="1"/>
+    <line x1="320" y1="0" x2="320" y2="220" stroke="white" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="220" stroke="white" stroke-width="1"/>
+  </g>
+
+  <!-- Building silhouette (right side) -->
+  <g opacity="0.12">
+    <rect x="300" y="60" width="40" height="160" fill="white" rx="2"/>
+    <rect x="350" y="90" width="30" height="130" fill="white" rx="2"/>
+    <rect x="390" y="40" width="50" height="180" fill="white" rx="2"/>
+    <rect x="450" y="70" width="30" height="150" fill="white" rx="2"/>
+    <!-- Windows -->
+    <rect x="308" y="68" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="322" y="68" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="308" y="82" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="322" y="82" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="398" y="48" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="412" y="48" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="426" y="48" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="398" y="62" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="412" y="62" width="8" height="8" rx="1" fill="#0D1426"/>
+    <rect x="426" y="62" width="8" height="8" rx="1" fill="#0D1426"/>
+  </g>
+
+  <!-- Bar chart (left side) -->
+  <rect x="30" y="120" width="28" height="75" rx="5" fill="url(#bar1)" opacity="0.85"/>
+  <rect x="68" y="90" width="28" height="105" rx="5" fill="url(#bar1)" opacity="0.7"/>
+  <rect x="106" y="65" width="28" height="130" rx="5" fill="url(#bar2)" opacity="0.9"/>
+  <rect x="144" y="45" width="28" height="150" rx="5" fill="url(#bar2)"/>
+  <rect x="182" y="30" width="28" height="165" rx="5" fill="url(#bar3)" opacity="0.9"/>
+  <rect x="220" y="20" width="28" height="175" rx="5" fill="url(#bar3)"/>
+
+  <!-- Trend line over bars -->
+  <polyline points="44,115 82,85 120,60 158,40 196,25 234,15" stroke="url(#lineg)" stroke-width="2.5" fill="none" filter="url(#glow)"/>
+
+  <!-- Data points on line -->
+  <circle cx="44" cy="115" r="4" fill="#60A5FA" filter="url(#glow)"/>
+  <circle cx="82" cy="85" r="4" fill="#60A5FA" filter="url(#glow)"/>
+  <circle cx="120" cy="60" r="4" fill="#34D399" filter="url(#glow)"/>
+  <circle cx="158" cy="40" r="5" fill="#34D399" filter="url(#glow)"/>
+  <circle cx="196" cy="25" r="4" fill="#A78BFA" filter="url(#glow)"/>
+  <circle cx="234" cy="15" r="6" fill="#A78BFA" filter="url(#glow)"/>
+
+  <!-- Metric cards -->
+  <rect x="268" y="18" width="100" height="48" rx="10" fill="rgba(37,99,235,0.15)" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+  <text x="318" y="36" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(148,163,184,0.7)" letter-spacing="1">UPTIME</text>
+  <text x="318" y="55" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="900" fill="#60A5FA">99.9%</text>
+
+  <rect x="268" y="76" width="100" height="48" rx="10" fill="rgba(5,150,105,0.15)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+  <text x="318" y="94" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(148,163,184,0.7)" letter-spacing="1">AHORRO</text>
+  <text x="318" y="113" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="900" fill="#34D399">−40%</text>
+
+  <!-- Shield icon (security) -->
+  <path d="M390 110 L390 90 C390 88 420 80 420 90 L420 110 C420 124 405 134 405 134 C405 134 390 124 390 110Z" fill="rgba(37,99,235,0.2)" stroke="rgba(96,165,250,0.5)" stroke-width="1.5"/>
+  <text x="405" y="117" text-anchor="middle" font-size="18" fill="rgba(96,165,250,0.8)">🔒</text>
+
+  <!-- Cloud icons -->
+  <ellipse cx="430" cy="165" rx="28" ry="18" fill="rgba(167,139,250,0.15)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+  <ellipse cx="418" cy="170" rx="18" ry="13" fill="rgba(167,139,250,0.15)"/>
+  <ellipse cx="444" cy="170" rx="18" ry="13" fill="rgba(167,139,250,0.15)"/>
+  <rect x="410" y="170" width="42" height="16" rx="8" fill="rgba(167,139,250,0.15)"/>
+  <!-- Cloud text -->
+  <text x="431" y="181" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(167,139,250,0.7)">AWS</text>
+</svg>

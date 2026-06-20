@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F766E"/>
+      <stop offset="60%" stop-color="#0E7490"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDBA74"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <clipPath id="clip">
+      <circle cx="150" cy="150" r="150"/>
+    </clipPath>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="150" cy="150" r="150" fill="url(#bg)"/>
+
+  <!-- Grid pattern (tech feel) -->
+  <g opacity="0.06">
+    <line x1="0" y1="50" x2="300" y2="50" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="100" x2="300" y2="100" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="150" x2="300" y2="150" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="200" x2="300" y2="200" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="250" x2="300" y2="250" stroke="white" stroke-width="1"/>
+    <line x1="50" y1="0" x2="50" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="100" y1="0" x2="100" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="150" y1="0" x2="150" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="250" y1="0" x2="250" y2="300" stroke="white" stroke-width="1"/>
+  </g>
+
+  <g clip-path="url(#clip)">
+    <!-- Body/shirt (white shirt, techy) -->
+    <path d="M15 330 C15 250 70 225 150 225 C230 225 285 250 285 330 Z" fill="url(#shirt)"/>
+
+    <!-- Collar -->
+    <polygon points="125,222 150,235 150,198 138,192" fill="white"/>
+    <polygon points="175,222 150,235 150,198 162,192" fill="white"/>
+
+    <!-- Neck -->
+    <rect x="133" y="172" width="34" height="30" rx="6" fill="url(#skin)"/>
+
+    <!-- Head -->
+    <ellipse cx="150" cy="145" rx="50" ry="55" fill="url(#skin)"/>
+
+    <!-- Glasses (tech look) -->
+    <rect x="113" y="140" width="28" height="20" rx="8" fill="none" stroke="#1C1917" stroke-width="2.5"/>
+    <rect x="159" y="140" width="28" height="20" rx="8" fill="none" stroke="#1C1917" stroke-width="2.5"/>
+    <line x1="141" y1="150" x2="159" y2="150" stroke="#1C1917" stroke-width="2"/>
+    <!-- Glasses lenses tint -->
+    <rect x="114" y="141" width="26" height="18" rx="7" fill="rgba(6,182,212,0.12)"/>
+    <rect x="160" y="141" width="26" height="18" rx="7" fill="rgba(6,182,212,0.12)"/>
+    <!-- Eye pupils behind glasses -->
+    <circle cx="127" cy="150" r="4" fill="#1C1917"/>
+    <circle cx="173" cy="150" r="4" fill="#1C1917"/>
+    <circle cx="129" cy="148" r="1.5" fill="white"/>
+    <circle cx="175" cy="148" r="1.5" fill="white"/>
+
+    <!-- Hair (shorter, professional) -->
+    <ellipse cx="150" cy="95" rx="50" ry="20" fill="#292524"/>
+    <ellipse cx="150" cy="90" rx="48" ry="16" fill="#3D3A38"/>
+    <ellipse cx="100" cy="118" rx="14" ry="30" fill="#292524"/>
+    <ellipse cx="200" cy="118" rx="14" ry="30" fill="#292524"/>
+
+    <!-- Ears -->
+    <ellipse cx="100" cy="150" rx="8" ry="10" fill="#EA580C"/>
+    <ellipse cx="200" cy="150" rx="8" ry="10" fill="#EA580C"/>
+
+    <!-- Eyebrows -->
+    <path d="M115 134 Q127 129 139 133" stroke="#292524" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M161 133 Q173 129 185 134" stroke="#292524" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <ellipse cx="150" cy="162" rx="5" ry="4" fill="#C2621A" opacity="0.5"/>
+
+    <!-- Smile (subtle/smirk) -->
+    <path d="M135 175 Q150 183 165 177" stroke="#9A3412" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Code badge -->
+  <circle cx="240" cy="240" r="28" fill="rgba(15,118,110,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <text x="240" y="244" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="white">&lt;/&gt;</text>
+</svg>

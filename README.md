@@ -1,6 +1,6 @@
 # Devioz — Web Corporativa + Agente Transaccional SofIA
 
-Sistema completo de presencia digital B2B para **Devioz**, consultora tecnológica peruana. Combina una web corporativa con posicionamiento SEO y un agente conversacional de IA (**SofIA**) capaz de mostrar el catálogo, gestionar un carrito de compras y cobrar en Soles directamente desde el chat.
+Sistema completo de presencia digital B2B para **Devioz**, consultora tecnológica peruana. Combina una web corporativa completa con un agente conversacional de IA (**SofIA**) capaz de mostrar el catálogo, gestionar un carrito de compras y cobrar en Soles directamente desde el chat.
 
 ---
 
@@ -9,14 +9,16 @@ Sistema completo de presencia digital B2B para **Devioz**, consultora tecnológi
 1. [Descripción general](#descripción-general)
 2. [Stack tecnológico](#stack-tecnológico)
 3. [Arquitectura del sistema](#arquitectura-del-sistema)
-4. [Cómo funciona SofIA](#cómo-funciona-sofia)
-5. [Instalación local](#instalación-local)
-6. [Variables de entorno](#variables-de-entorno)
-7. [Endpoints de la API](#endpoints-de-la-api)
-8. [Panel de administración](#panel-de-administración)
-9. [Seguridad](#seguridad)
-10. [Despliegue en producción](#despliegue-en-producción)
-11. [Estructura del proyecto](#estructura-del-proyecto)
+4. [Secciones de la web](#secciones-de-la-web)
+5. [Efectos visuales y animaciones](#efectos-visuales-y-animaciones)
+6. [Cómo funciona SofIA](#cómo-funciona-sofia)
+7. [Instalación local](#instalación-local)
+8. [Variables de entorno](#variables-de-entorno)
+9. [Endpoints de la API](#endpoints-de-la-api)
+10. [Panel de administración](#panel-de-administración)
+11. [Seguridad](#seguridad)
+12. [Despliegue en producción](#despliegue-en-producción)
+13. [Estructura del proyecto](#estructura-del-proyecto)
 
 ---
 
@@ -24,7 +26,7 @@ Sistema completo de presencia digital B2B para **Devioz**, consultora tecnológi
 
 | Módulo | Descripción |
 | --- | --- |
-| **Web corporativa** | Página pública server-side con hero 3D interactivo, catálogo de servicios y productos, SEO on-page y Open Graph |
+| **Web corporativa** | Landing page server-side con hero 3D interactivo, 11 secciones, animaciones CSS/JS, SEO on-page y Open Graph |
 | **Agente SofIA** | Widget React embebido que conecta con un agente de IA (Groq + Llama 3 70B) vía Server-Sent Events; gestiona carrito y procesa pagos |
 | **API REST** | Backend PHP 8.2 + Slim 4 con autenticación, rate limiting y lógica de negocio desacoplada |
 | **Panel Admin** | SPA React para gestionar productos, ver órdenes y monitorear métricas en tiempo real |
@@ -44,6 +46,7 @@ Sistema completo de presencia digital B2B para **Devioz**, consultora tecnológi
 | Widget chat | React 18 + Vite (bundle IIFE) | 18 / 5.x |
 | Panel admin | React 18 SPA + Vite | 18 / 5.x |
 | Web pública | PHP server-side + Bootstrap 5 + Three.js | — |
+| 3D / Animaciones | Three.js + Canvas API vanilla | 0.158.0 |
 | HTTP client | Guzzle | 7.x |
 
 ---
@@ -66,14 +69,14 @@ Sistema completo de presencia digital B2B para **Devioz**, consultora tecnológi
 │  CorsMiddleware → RateLimitMiddleware → AdminAuthMiddleware       │
 │                                                                  │
 │  ┌──────────────┐  ┌─────────────┐  ┌────────────────────────┐  │
-│  │ HomeController│  │ChatController│  │ProductController       │  │
-│  │ (render HTML) │  │(SSE stream) │  │PaymentController       │  │
-│  └──────────────┘  └──────┬──────┘  │WebhookController       │  │
-│                            │         │AdminController          │  │
-│                    ┌───────▼──────┐  └────────────────────────┘  │
+│  │HomeController│  │ChatController│  │ProductController       │  │
+│  │(render HTML) │  │(SSE stream) │  │PaymentController       │  │
+│  │ContactCtrl   │  └──────┬──────┘  │WebhookController       │  │
+│  │(formulario)  │         │         │AdminController          │  │
+│  └──────────────┘  ┌──────▼──────┐  └────────────────────────┘  │
 │                    │  GroqService │                               │
 │                    │ ToolExecutor │                               │
-│                    └───────┬──────┘                              │
+│                    └──────┬──────┘                               │
 └───────────────────────────┼──────────────────────────────────────┘
                              │
           ┌──────────────────┼──────────────────┐
@@ -83,6 +86,62 @@ Sistema completo de presencia digital B2B para **Devioz**, consultora tecnológi
    │  (Eloquent)  │   │ (Llama 3 70B)│   │  (pagos PEN) │
    └─────────────┘   └──────────────┘   └──────────────┘
 ```
+
+---
+
+## Secciones de la web
+
+La web corporativa tiene 11 secciones en una sola página:
+
+| # | Sección | ID | Descripción |
+| --- | --- | --- | --- |
+| — | **Hero** | `#inicio` | Esfera 3D Three.js, typewriter en H1, stats animadas, parallax al scroll |
+| — | **Ticker** | — | Banda de estadísticas con scroll horizontal automático |
+| 1 | **Servicios** | `#servicios` | 9 cards con efecto flip 3D: frente muestra ícono+nombre, reverso muestra descripción + botón cotizar |
+| 2 | **Stack tecnológico** | `#tecnologias` | Grid de 16 tecnologías con hover lift |
+| 3 | **Productos** | `#productos` | Catálogo dinámico desde BD con tabs por categoría (visible si hay productos activos) |
+| 4 | **Casos de éxito** | `#casos` | 3 case studies (Finanzas, Retail, Manufactura) con ilustraciones SVG y métricas de impacto |
+| 5 | **Cómo funciona** | `#como-funciona` | 4 pasos con conector SVG animado draw-on-scroll |
+| 6 | **Video Demo** | `#demo` | Placeholder con thumbnail SVG que abre SofIA al hacer clic |
+| 7 | **Nosotros** | `#nosotros` | Texto con glitch en "SofIA" + card de características |
+| 8 | **Equipo** | `#equipo` | 4 cards con avatares SVG y tilt 3D |
+| 9 | **FAQ** | `#faq` | Acordeón con preguntas frecuentes |
+| 10 | **Contacto** | `#contacto` | Layout 2 columnas: info de contacto + formulario AJAX con validación |
+
+---
+
+## Efectos visuales y animaciones
+
+### Three.js
+
+- **Esfera hero**: partículas con líneas de conexión interactivas, rotación continua, reacciona al mouse
+
+### CSS + Canvas
+
+- **Typewriter** en H1 — rota entre 6 frases de servicio con cursor parpadeante
+- **Glitch** en "SofIA" — efecto cyberpunk con desplazamiento cromático cada 4.5 segundos
+- **Flip 3D** en cards de servicios — hover voltea 180° con perspectiva CSS; reverso muestra descripción y CTA
+- **Tilt 3D** en cards de casos/equipo/productos — perspectiva dinámica siguiendo el cursor
+- **Cursor magnético** en botones CTA — los botones atraen al cursor con spring suave
+- **Parallax** en hero — el contenido sube al 30% de la velocidad de scroll
+- **Draw-on-scroll** — línea SVG con gradiente azul→violeta que se dibuja al llegar a "Cómo funciona"
+- **Partículas de fondo** — 85 puntos conectados en canvas fijo, se repelen del mouse (opacidad 35%)
+- **Contadores animados** — números suben con easing cúbico al entrar en viewport
+
+### UI/UX
+
+- **Cookie consent** — banner fijo con blur que persiste en `localStorage`
+- **Volver arriba** — botón flotante que aparece tras 400px de scroll
+- **Scroll suave** — todas las anclas internas con `scrollIntoView`
+- **Navbar scroll** — fondo sólido al bajar 40px
+- **IntersectionObserver** — card reveal staggered en todas las secciones
+
+### Imágenes SVG generadas
+
+- `avatar-ceo.svg`, `avatar-tech.svg`, `avatar-ai.svg`, `avatar-ux.svg` — avatares del equipo (300×300)
+- `case-finanzas.svg`, `case-retail.svg`, `case-manufactura.svg` — ilustraciones de casos (480×220)
+- `demo-thumbnail.svg` — thumbnail del demo con mockup de chat SofIA (1280×720)
+- `og-devioz.svg` — imagen Open Graph (1200×630)
 
 ---
 
@@ -249,6 +308,8 @@ docker compose up --build
 | `CULQI_SECRET_KEY` | Llave secreta Culqi | `sk_test_...` |
 | `CULQI_WEBHOOK_SECRET` | Secreto para validar webhooks | configurar en panel Culqi |
 | `WHATSAPP_NUMBER` | Número para handoff humano | `51999999999` |
+| `MAIL_FROM` | Remitente de los emails del formulario | `no-reply@devioz.com` |
+| `MAIL_REPLY_TO` | Destino de los mensajes del formulario | `contacto@devioz.com` |
 | `CORS_ALLOWED_ORIGINS` | Orígenes CORS permitidos | `*` o `https://tudominio.pe` |
 | `RATE_LIMIT_PER_MIN` | Máx. requests/min al chat por IP | `20` |
 
@@ -276,6 +337,7 @@ DELETE /api/cart/{sessionId}/items/{id}    Eliminar producto del carrito
 ```
 POST   /api/chat/message      Agente SofIA — responde por SSE (texto + eventos UI)
 POST   /api/checkout          Procesar pago con token Culqi
+POST   /api/contact           Formulario de contacto (máx. 10/min por IP)
 ```
 
 ### Webhook
@@ -295,6 +357,22 @@ PUT    /api/admin/products/{id}            Editar producto
 DELETE /api/admin/products/{id}            Desactivar producto
 GET    /api/admin/orders?status=           Listar órdenes con filtro opcional
 ```
+
+#### Payload del formulario de contacto
+
+```json
+POST /api/contact
+{
+  "nombre":   "Juan Pérez",
+  "empresa":  "Empresa SAC",       // opcional
+  "email":    "juan@empresa.pe",
+  "telefono": "999999999",         // opcional
+  "servicio": "Software Factory",  // opcional
+  "mensaje":  "Necesito..."
+}
+```
+
+Respuestas: `{"success": true}` o `{"success": false, "message": "..."}`.
 
 ---
 
@@ -330,6 +408,12 @@ Acceso en `http://localhost:8080/admin/`
 - Contraseñas almacenadas con bcrypt (cost 10).
 - Rate limiting de 10 intentos/min en el endpoint de login.
 
+### Formulario de contacto
+
+- Validación server-side: nombre, email (`filter_var FILTER_VALIDATE_EMAIL`), mensaje requeridos.
+- Rate limiting independiente: 10 envíos/min por IP (grupo `contact` en tabla `rate_limits`).
+- Usa `php mail()` configurable vía `MAIL_FROM` y `MAIL_REPLY_TO`.
+
 ### Rate limiting
 
 Persistido en MySQL sin Redis: ventana de 60 segundos por IP y grupo de ruta. Usa `SELECT ... FOR UPDATE` para evitar condiciones de carrera.
@@ -364,7 +448,9 @@ Configurable por entorno. En producción restringir a `https://tudominio.pe`.
 
 7. Restringir `CORS_ALLOWED_ORIGINS` al dominio y usar **HTTPS** (requerido por Culqi).
 
-8. Configurar el servidor para no bufferizar el endpoint SSE.
+8. Activar Google Analytics: descomentar el snippet en `<head>` de `home.php` y reemplazar `G-XXXXXXXXXX`.
+
+9. Configurar el servidor para no bufferizar el endpoint SSE.
 
    **Nginx:**
 
@@ -389,10 +475,19 @@ devioz-web-completa/
 │   ├── index.php                  Front controller de Slim 4
 │   ├── .htaccess                  Rewrite para Apache
 │   ├── assets/
-│   │   ├── css/style.css          Estilos de la web corporativa
-│   │   └── js/
-│   │       ├── three-hero.js      Hero 3D con Three.js (esfera de partículas)
-│   │       └── main.js            Scripts generales de la web
+│   │   ├── css/style.css          Estilos de la web (Bootstrap 5 + custom tokens)
+│   │   ├── js/
+│   │   │   ├── three-hero.js      Esfera 3D interactiva del hero (Three.js)
+│   │   │   └── main.js            Todas las animaciones: typewriter, flip, partículas,
+│   │   │                          parallax, cursor magnético, draw-on-scroll, contadores,
+│   │   │                          cookie consent, back-to-top, formulario AJAX
+│   │   └── images/
+│   │       ├── avatar-*.svg       Avatares SVG del equipo (ceo, tech, ai, ux)
+│   │       ├── case-*.svg         Ilustraciones SVG de casos de éxito
+│   │       ├── demo-thumbnail.svg Thumbnail del demo (1280×720)
+│   │       ├── og-devioz.svg      Imagen Open Graph (1200×630)
+│   │       ├── logo.svg           Logo Devioz
+│   │       └── favicon.svg        Favicon
 │   ├── widget/
 │   │   └── sofia-widget.js        Bundle IIFE del widget SofIA (React 18)
 │   └── admin/                     Bundle SPA del panel de administración
@@ -401,6 +496,7 @@ devioz-web-completa/
 │   ├── Controllers/
 │   │   ├── HomeController.php     Renderiza la web corporativa
 │   │   ├── ChatController.php     Agente SofIA (SSE + bucle de herramientas)
+│   │   ├── ContactController.php  Formulario de contacto (valida + envía email)
 │   │   ├── PaymentController.php  Cobra con Culqi (monto desde BD)
 │   │   ├── WebhookController.php  Valida y concilia pagos de Culqi
 │   │   ├── ProductController.php  Catálogo público
@@ -418,6 +514,7 @@ devioz-web-completa/
 │   ├── Services/
 │   │   ├── GroqService.php        Streaming desde la API de Groq con Guzzle
 │   │   ├── ToolExecutor.php       Definiciones JSON Schema + ejecución de tools
+│   │   ├── EmailService.php       Envío de emails vía php mail()
 │   │   ├── CulqiPaymentService.php  createCharge(), getCharge(), verifyWebhookSignature()
 │   │   └── TokenService.php       Tokens HMAC para el panel admin (TTL 8h)
 │   │
@@ -426,7 +523,7 @@ devioz-web-completa/
 │   │   ├── RateLimitingMiddleware.php  Ventana de 60s por IP en MySQL
 │   │   └── AdminAuthMiddleware.php     Valida Bearer token del panel
 │   │
-│   ├── Views/home.php             Web corporativa completa (Bootstrap 5 + SEO)
+│   ├── Views/home.php             Web corporativa completa (11 secciones)
 │   ├── bootstrap.php              Carga .env + configura Eloquent Capsule
 │   └── routes.php                 Definición de todas las rutas
 │

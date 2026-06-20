@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BE185D"/>
+      <stop offset="50%" stop-color="#9333EA"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="top" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BE185D"/>
+      <stop offset="100%" stop-color="#9D174D"/>
+    </linearGradient>
+    <linearGradient id="hair-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C1917"/>
+      <stop offset="100%" stop-color="#292524"/>
+    </linearGradient>
+    <clipPath id="clip">
+      <circle cx="150" cy="150" r="150"/>
+    </clipPath>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="150" cy="150" r="150" fill="url(#bg)"/>
+
+  <!-- Floating color swatches (design feel) -->
+  <rect x="20" y="30" width="28" height="28" rx="8" fill="rgba(251,191,36,0.3)" transform="rotate(-15 34 44)"/>
+  <rect x="252" y="25" width="22" height="22" rx="7" fill="rgba(52,211,153,0.3)" transform="rotate(20 263 36)"/>
+  <rect x="255" y="240" width="24" height="24" rx="7" fill="rgba(251,191,36,0.25)" transform="rotate(-10 267 252)"/>
+  <circle cx="45" cy="240" r="14" fill="rgba(96,165,250,0.25)"/>
+
+  <!-- Glow -->
+  <circle cx="150" cy="130" r="70" fill="rgba(249,168,212,0.12)" filter="url(#soft)"/>
+
+  <g clip-path="url(#clip)">
+    <!-- Top/blouse -->
+    <path d="M10 330 C10 248 65 220 150 220 C235 220 290 248 290 330 Z" fill="url(#top)"/>
+
+    <!-- Neck -->
+    <rect x="132" y="170" width="36" height="30" rx="8" fill="url(#skin)"/>
+
+    <!-- Head -->
+    <ellipse cx="150" cy="140" rx="52" ry="56" fill="url(#skin)"/>
+
+    <!-- Long hair (back) -->
+    <ellipse cx="150" cy="200" rx="60" ry="50" fill="url(#hair-g)" opacity="0.9"/>
+    <rect x="90" y="120" width="28" height="100" rx="14" fill="url(#hair-g)"/>
+    <rect x="182" y="120" width="28" height="100" rx="14" fill="url(#hair-g)"/>
+
+    <!-- Hair (top and sides) -->
+    <ellipse cx="150" cy="90" rx="52" ry="24" fill="url(#hair-g)"/>
+    <path d="M98 100 Q150 78 202 100" fill="url(#hair-g)"/>
+    <!-- Hair volume -->
+    <ellipse cx="150" cy="84" rx="50" ry="18" fill="#292524"/>
+    <path d="M100 108 Q128 88 150 85 Q172 88 200 108" fill="#1C1917"/>
+
+    <!-- Ears -->
+    <ellipse cx="98" cy="146" rx="8" ry="11" fill="#D97706"/>
+    <ellipse cx="202" cy="146" rx="8" ry="11" fill="#D97706"/>
+
+    <!-- Earrings -->
+    <circle cx="98" cy="162" r="4" fill="#F472B6"/>
+    <circle cx="202" cy="162" r="4" fill="#F472B6"/>
+
+    <!-- Eyes -->
+    <ellipse cx="126" cy="143" rx="9" ry="9.5" fill="white"/>
+    <ellipse cx="174" cy="143" rx="9" ry="9.5" fill="white"/>
+    <!-- Iris -->
+    <circle cx="128" cy="144" r="6" fill="#BE185D"/>
+    <circle cx="176" cy="144" r="6" fill="#BE185D"/>
+    <!-- Pupil -->
+    <circle cx="128" cy="144" r="3.5" fill="#1C1917"/>
+    <circle cx="176" cy="144" r="3.5" fill="#1C1917"/>
+    <!-- Shine -->
+    <circle cx="130" cy="142" r="1.5" fill="white"/>
+    <circle cx="178" cy="142" r="1.5" fill="white"/>
+
+    <!-- Eyelashes (top) -->
+    <path d="M117 135 Q126 129 137 133" stroke="#1C1917" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M163 133 Q174 129 183 135" stroke="#1C1917" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Eyebrow (arched, feminine) -->
+    <path d="M116 130 Q127 123 138 128" stroke="#5C2D08" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M162 128 Q173 123 184 130" stroke="#5C2D08" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <path d="M146 158 Q150 165 154 158" stroke="#B45309" stroke-width="1.5" fill="none"/>
+
+    <!-- Lips -->
+    <path d="M132 176 Q150 171 168 176" stroke="#BE185D" stroke-width="1" fill="#F472B6"/>
+    <path d="M132 176 Q150 185 168 176" fill="#EC4899"/>
+    <!-- Lip line -->
+    <path d="M132 176 Q141 173 150 173 Q159 173 168 176" fill="#BE185D"/>
+  </g>
+
+  <!-- Pen tool badge (UX design) -->
+  <circle cx="240" cy="240" r="28" fill="rgba(190,24,93,0.8)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/>
+  <text x="240" y="248" text-anchor="middle" font-size="20" fill="white">✏️</text>
+</svg>

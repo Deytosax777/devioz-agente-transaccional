@@ -6,6 +6,7 @@ use Devioz\Controllers\AdminController;
 use Devioz\Controllers\AuthController;
 use Devioz\Controllers\CartController;
 use Devioz\Controllers\ChatController;
+use Devioz\Controllers\ContactController;
 use Devioz\Controllers\HomeController;
 use Devioz\Controllers\PaymentController;
 use Devioz\Controllers\ProductController;
@@ -13,6 +14,7 @@ use Devioz\Controllers\WebhookController;
 use Devioz\Middleware\AdminAuthMiddleware;
 use Devioz\Middleware\RateLimitingMiddleware;
 use Devioz\Services\CulqiPaymentService;
+use Devioz\Services\EmailService;
 use Devioz\Services\GroqService;
 use Devioz\Services\TokenService;
 use Devioz\Services\ToolExecutor;
@@ -30,10 +32,11 @@ return function (App $app): void {
     $tokens = new TokenService();
 
     $homeController    = new HomeController();
+    $contactController = new ContactController();
     $productController = new ProductController();
     $cartController    = new CartController();
     $chatController    = new ChatController($groq, $tools);
-    $paymentController = new PaymentController($culqi);
+    $paymentController = new PaymentController($culqi, new EmailService());
     $webhookController = new WebhookController($culqi);
     $authController    = new AuthController($tokens);
     $adminController   = new AdminController();
@@ -47,6 +50,7 @@ return function (App $app): void {
 
     // ---------- API publica ----------
     $app->group('/api', function (RouteCollectorProxy $api) use (
+        $contactController,
         $productController,
         $cartController,
         $chatController,
@@ -81,6 +85,10 @@ return function (App $app): void {
         // Checkout Culqi - protegido por rate limiting
         $api->post('/checkout', [$paymentController, 'checkout'])
             ->add(new RateLimitingMiddleware('checkout'));
+
+        // Formulario de contacto web
+        $api->post('/contact', [$contactController, 'send'])
+            ->add(new RateLimitingMiddleware('contact', 10));
 
         // Webhook de Culqi (validacion de firma + confirmacion server-to-server)
         $api->post('/webhooks/culqi', [$webhookController, 'culqi']);

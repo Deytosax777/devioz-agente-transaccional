@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="60%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E40AF"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+    <clipPath id="clip">
+      <circle cx="150" cy="150" r="150"/>
+    </clipPath>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="150" cy="150" r="150" fill="url(#bg)"/>
+
+  <!-- Decorative rings -->
+  <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+  <circle cx="150" cy="150" r="105" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+  <!-- Background glow -->
+  <circle cx="150" cy="120" r="70" fill="rgba(96,165,250,0.12)" filter="url(#soft)"/>
+
+  <g clip-path="url(#clip)">
+    <!-- Suit/body -->
+    <path d="M20 330 C20 255 75 230 150 230 C225 230 280 255 280 330 Z" fill="url(#suit)"/>
+
+    <!-- Tie -->
+    <polygon points="138,228 150,240 162,228 157,195 143,195" fill="#DC2626"/>
+    <polygon points="143,195 150,240 150,210" fill="#991B1B"/>
+
+    <!-- Shirt collar -->
+    <polygon points="120,220 150,240 150,200 140,195" fill="white" opacity="0.95"/>
+    <polygon points="180,220 150,240 150,200 160,195" fill="white" opacity="0.90"/>
+
+    <!-- Neck -->
+    <rect x="133" y="175" width="34" height="28" rx="6" fill="url(#skin)"/>
+
+    <!-- Head -->
+    <ellipse cx="150" cy="148" rx="48" ry="54" fill="url(#skin)"/>
+
+    <!-- Hair -->
+    <ellipse cx="150" cy="102" rx="48" ry="22" fill="#1C1917"/>
+    <ellipse cx="150" cy="96" rx="46" ry="18" fill="#292524"/>
+    <!-- Side hair -->
+    <ellipse cx="104" cy="122" rx="14" ry="26" fill="#1C1917"/>
+    <ellipse cx="196" cy="122" rx="14" ry="26" fill="#1C1917"/>
+
+    <!-- Ears -->
+    <ellipse cx="102" cy="152" rx="8" ry="10" fill="#D97706"/>
+    <ellipse cx="198" cy="152" rx="8" ry="10" fill="#D97706"/>
+
+    <!-- Eyes -->
+    <ellipse cx="128" cy="148" rx="7" ry="8" fill="#1C1917"/>
+    <ellipse cx="172" cy="148" rx="7" ry="8" fill="#1C1917"/>
+    <!-- Eye whites -->
+    <ellipse cx="128" cy="147" rx="7" ry="7.5" fill="white"/>
+    <ellipse cx="172" cy="147" rx="7" ry="7.5" fill="white"/>
+    <!-- Pupils -->
+    <circle cx="129" cy="148" r="4" fill="#1C1917"/>
+    <circle cx="173" cy="148" r="4" fill="#1C1917"/>
+    <!-- Shine -->
+    <circle cx="131" cy="146" r="1.5" fill="white"/>
+    <circle cx="175" cy="146" r="1.5" fill="white"/>
+
+    <!-- Eyebrows -->
+    <path d="M119 137 Q128 132 137 136" stroke="#1C1917" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M163 136 Q172 132 181 137" stroke="#1C1917" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <ellipse cx="150" cy="162" rx="5" ry="4" fill="#C77B24" opacity="0.6"/>
+
+    <!-- Smile -->
+    <path d="M132 175 Q150 186 168 175" stroke="#B45309" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M132 175 Q150 183 168 175" fill="rgba(180,83,9,0.2)"/>
+  </g>
+
+  <!-- Star badge (CEO) -->
+  <circle cx="240" cy="240" r="28" fill="rgba(30,58,138,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <text x="240" y="248" text-anchor="middle" font-size="22" fill="#FBBF24">★</text>
+</svg>
