@@ -396,8 +396,7 @@ export default function App() {
                             );
                         })}
 
-                        {toolNote ? <div className="sofia-tool-note">{toolNote}</div> : null}
-                        {typing ? <TypingIndicator /> : null}
+                        {typing ? <TypingIndicator label={toolNote} /> : null}
                     </div>
 
                     {showQuickReplies ? (

@@ -183,7 +183,9 @@ class ChatController
 
     private function systemPrompt(): string
     {
-        $whatsapp = (string) env('WHATSAPP_NUMBER', '51999999999');
+        $whatsapp  = (string) env('WHATSAPP_NUMBER', '51999999999');
+        $categories = $this->fetchCategoryNames();
+        $catList    = implode(', ', $categories);
 
         return <<<PROMPT
 Eres SofIA, la asesora comercial virtual de Devioz, consultora tecnológica peruana especializada en soluciones TI empresariales B2B: Software Factory, IoT, Ciberseguridad, Cloud, RPA, Diseño, Multimedia, Marketing Digital y venta de Plantillas Web y Agentes de IA.
@@ -192,7 +194,7 @@ Tu rol: vendedora, asesora y soporte automatizado. Atiendes a medianas y grandes
 
 REGLAS OBLIGATORIAS:
 1. PRECIOS: Nunca inventes precios ni productos. Antes de mencionar cualquier precio o recomendar un producto, consulta el catálogo real con la herramienta get_catalog. Todos los precios están en Soles peruanos (S/, PEN).
-2. CATÁLOGO: Vendes únicamente los productos del catálogo (categorías: Diseño Gráfico, Spots Publicitarios, Business Intelligence, Inteligencia Artificial, Desarrollo Web).
+2. CATÁLOGO: Vendes únicamente los productos del catálogo. Categorías disponibles hoy: {$catList}. Usa get_catalog con el filtro de categoría adecuado.
 3. CARRITO: Cuando el cliente decida comprar, usa add_to_cart con el product_id correcto. Para revisar o quitar productos usa get_cart y remove_from_cart.
 4. PAGO: Cuando el cliente confirme que quiere pagar, usa generate_checkout. La pasarela Culqi (tarjetas y Yape, en Soles) se abre dentro del chat. No pidas datos de tarjeta por mensaje JAMÁS.
 5. COTIZACIONES: Los productos sin precio (marcados "A cotizar") y los servicios de consultoría a medida (Software Factory, IoT, Ciberseguridad, Cloud, RPA, proyectos personalizados) se derivan a un asesor humano con human_handoff (WhatsApp +{$whatsapp}).
@@ -202,6 +204,25 @@ REGLAS OBLIGATORIAS:
 
 Flujo de venta sugerido: saluda → identifica la necesidad → consulta el catálogo → recomienda 1-3 opciones con precio → agrega al carrito → confirma → genera el checkout → agradece y ofrece soporte.
 PROMPT;
+    }
+
+    /** Obtiene los nombres de categorías activas desde la BD; usa fallback si falla. */
+    private function fetchCategoryNames(): array
+    {
+        try {
+            $names = \Devioz\Models\Category::orderBy('id')
+                ->pluck('name')
+                ->all();
+
+            return $names !== [] ? $names : $this->defaultCategories();
+        } catch (\Throwable) {
+            return $this->defaultCategories();
+        }
+    }
+
+    private function defaultCategories(): array
+    {
+        return ['Diseño Gráfico', 'Spots Publicitarios', 'Business Intelligence', 'Inteligencia Artificial', 'Desarrollo Web'];
     }
 
     /** Prepara la conexion SSE y emite los headers manualmente (incluido CORS). */

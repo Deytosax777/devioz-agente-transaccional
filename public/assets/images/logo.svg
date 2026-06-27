@@ -1,11 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
   <defs>
-    <linearGradient id="dvzGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#60a5fa"/>
-      <stop offset="1" stop-color="#22d3ee"/>
+    <!-- Gradiente teal: cyan brillante arriba → verde oscuro abajo (como en el logo real) -->
+    <linearGradient id="dg" x1="0" y1="0" x2="72" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#1EC8B0"/>
+      <stop offset="35%"  stop-color="#0E8A78"/>
+      <stop offset="75%"  stop-color="#0B6660"/>
+      <stop offset="100%" stop-color="#032820"/>
     </linearGradient>
+    <!-- Interior del D: muy oscuro -->
+    <linearGradient id="dk" x1="0" y1="0" x2="60" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#063530"/>
+      <stop offset="100%" stop-color="#020C0A"/>
+    </linearGradient>
+    <!-- Glow suave -->
+    <filter id="glow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#12A090" flood-opacity="0.55"/>
+    </filter>
   </defs>
-  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0f1629"/>
-  <path d="M20 18h12c8.8 0 16 6.3 16 14s-7.2 14-16 14H20V18zm8 7v14h4c5 0 8.6-3.1 8.6-7s-3.6-7-8.6-7h-4z" fill="url(#dvzGrad)"/>
-  <circle cx="47" cy="20" r="4" fill="#22d3ee"/>
+
+  <!-- ── D exterior (forma del letter D, sin caja de fondo) ── -->
+  <path d="M7 5
+           L7 75
+           L37 75
+           C60 75 73 60 73 40
+           C73 20 60 5 37 5
+           Z"
+        fill="url(#dg)" filter="url(#glow)"/>
+
+  <!-- ── Counter interior (la parte vacía / oscura del D) ── -->
+  <path d="M20 18
+           L20 62
+           L35 62
+           C50 62 60 52 60 40
+           C60 28 50 18 35 18
+           Z"
+        fill="url(#dk)"/>
+
+  <!-- ── Acento blanco: forma prismática / D angular ──
+       Dos piezas que forman la silueta de una D geométrica de bordes rectos:
+       pieza superior (triángulo superior derecho) y pieza inferior (espejo)  -->
+
+  <!-- Pieza superior: flecha angular apuntando derecha -->
+  <polygon points="9,10  23,10  36,40  23,38  9,38"  fill="white"/>
+
+  <!-- Pieza inferior: simétrica -->
+  <polygon points="9,42  23,42  36,40  23,70  9,70"  fill="white" opacity="0.88"/>
 </svg>

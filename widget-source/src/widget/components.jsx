@@ -19,10 +19,16 @@ export function RichText({ text }) {
     );
 }
 
-export function TypingIndicator() {
+export function TypingIndicator({ label }) {
     return (
         <div className="sofia-typing" aria-label="SofIA está escribiendo">
-            <span /><span /><span />
+            <div className="sofia-typing-dots">
+                <span /><span /><span />
+            </div>
+            {label
+                ? <span className="sofia-typing-label">{label}</span>
+                : <span className="sofia-typing-label-default">SofIA está escribiendo…</span>
+            }
         </div>
     );
 }

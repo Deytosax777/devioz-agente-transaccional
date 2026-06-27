@@ -9,6 +9,7 @@ use Devioz\Models\Conversation;
 use Devioz\Models\Message;
 use Devioz\Models\Order;
 use Devioz\Services\CulqiPaymentService;
+use Devioz\Services\EmailService;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -21,8 +22,10 @@ use Throwable;
  */
 class PaymentController
 {
-    public function __construct(private CulqiPaymentService $culqi)
-    {
+    public function __construct(
+        private CulqiPaymentService $culqi,
+        private EmailService $email,
+    ) {
     }
 
     /** GET /api/config — configuracion publica para el widget. */
@@ -116,6 +119,10 @@ class PaymentController
                         . ". Recibirás los entregables en {$email}.",
                 ]);
             }
+
+            // Email de confirmación al comprador (no bloquea aunque falle)
+            $this->email->sendPaymentConfirmation($order->fresh(['items']));
+
         } catch (Throwable $e) {
             // El cargo ya existe en Culqi: registrarlo aunque falle el guardado local
             return $this->json($response, [

@@ -154,32 +154,46 @@ export const WIDGET_CSS = `
 
 .sofia-typing {
     display: inline-flex;
-    gap: 4px;
-    padding: 12px 16px;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
     background: #fff;
     border: 1px solid var(--sf-border);
-    border-radius: 16px;
+    border-radius: 18px;
     border-bottom-left-radius: 5px;
     align-self: flex-start;
+    box-shadow: 0 2px 10px rgba(15,23,42,0.06);
+    max-width: 85%;
+}
+.sofia-typing-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-shrink: 0;
 }
 .sofia-typing span {
     width: 7px; height: 7px;
     border-radius: 50%;
-    background: #cbd5e1;
-    animation: sofia-blink 1.2s infinite;
+    background: linear-gradient(135deg, #0B6F60, #16A08A);
+    animation: sofia-blink 1.3s infinite ease-in-out;
 }
-.sofia-typing span:nth-child(2) { animation-delay: 0.2s; }
-.sofia-typing span:nth-child(3) { animation-delay: 0.4s; }
+.sofia-typing span:nth-child(2) { animation-delay: 0.18s; }
+.sofia-typing span:nth-child(3) { animation-delay: 0.36s; }
 @keyframes sofia-blink {
-    0%, 80%, 100% { opacity: 0.3; transform: translateY(0); }
-    40%           { opacity: 1;   transform: translateY(-3px); }
+    0%, 80%, 100% { opacity: 0.25; transform: translateY(0) scale(0.85); }
+    40%           { opacity: 1;    transform: translateY(-3px) scale(1.1); }
 }
-.sofia-tool-note {
+.sofia-typing-label {
     font-size: 11.5px;
     color: var(--sf-muted);
-    align-self: flex-start;
-    padding: 0 4px;
     font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sofia-typing-label-default {
+    font-size: 11.5px;
+    color: var(--sf-muted);
 }
 
 /* ---------- Tarjetas de producto ---------- */
